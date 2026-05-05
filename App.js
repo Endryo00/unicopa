@@ -14,7 +14,7 @@ export default function App() {
 
   const agruparPorData = (jogos) => {
     return jogos.reduce((acc, jogo) => {
-      const data = jogo.data_brasilia; //vem lá do sexta feira 13
+      const data = jogo.data_brasilia;
 
       if (!acc[data]) {
         acc[data] = [];
