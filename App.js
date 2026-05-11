@@ -29,9 +29,13 @@ export default function App() {
   const jogosAgrupados = agruparPorData(jogos);
 
   const jogosTratados = Object.keys(jogosAgrupados).map((data) => {
+    const jogosDoDia = jogosAgrupados[data];
+    const jogosOrdenados = jogosDoDia.sort((a, b) => {
+      return a.hora_brasilia.localeCompare(b.hora_brasilia);
+    });
     return {
       title: data,
-      data: jogosAgrupados[data],
+      data: jogosOrdenados,
     };
   });
 
