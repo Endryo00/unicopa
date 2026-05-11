@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
 
 import { bandeiras } from "../bandeiras";
 export default function GameCard({ game }) {
+  const isCasaBrasil = game.sigla_casa === "BRA";
+  const isForaBrasil = game.sigla_fora === "BRA";
   return (
     <View style={styles.jogo}>
       <Text style={styles.grupo}>
@@ -11,7 +13,7 @@ export default function GameCard({ game }) {
       <View style={styles.linhaPrincipal}>
         <View style={styles.time}>
           <Image
-            style={styles.bandeira}
+            style={[styles.bandeira, isCasaBrasil && styles.bordaDourada]}
             source={
               bandeiras[game.sigla_casa] ||
               require("../assets/jogos/placeholder.png")
@@ -28,7 +30,7 @@ export default function GameCard({ game }) {
         <View style={styles.time}>
           <Text style={styles.sigla}>{game.sigla_fora}</Text>
           <Image
-            style={styles.bandeira}
+            style={[styles.bandeira, isForaBrasil && styles.bordaDourada]}
             source={
               bandeiras[game.sigla_fora] ||
               require("../assets/jogos/placeholder.png")
@@ -127,5 +129,16 @@ const styles = StyleSheet.create({
   subTitulo: {
     color: "#8fa3b8",
     fontSize: 12,
+  },
+
+  bordaDourada: {
+    shadowColor: "#ff6600",
+    shadowOffset: { width: 14, height: 14 },
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    elevation: 15,
+    backgroundColor: "#0c1b2a",
+    borderWidth: 1.5,
+    borderColor: "#ff6600",
   },
 });
